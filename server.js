@@ -4,8 +4,20 @@ const app = express();
 app.use(express.json());
 
 //connect server to mongo server (local DB)
-mongoose
-  .connect("mongodb://localhost:27017/task")
+/*mongoose.connect("mongodb://localhost:27017/task")
+  .then(() => {
+    console.log("Database now is connected");
+
+    app.listen(3000, function () {
+      console.log("server now is opened");
+    });
+  })
+  .catch((err) => {
+    console.error("You have an error");
+  });*/
+
+//connect server to mongo server (cloud DB)
+mongoose.connect("mongodb+srv://ayahossam04:Bsi5P2eZnku0AO4w@e-businessdb.9mcxvqh.mongodb.net/Task")
   .then(() => {
     console.log("Database now is connected");
 
@@ -16,6 +28,7 @@ mongoose
   .catch((err) => {
     console.error("You have an error");
   });
+
 
 const studentSchema = new mongoose.Schema({
   name: String,
@@ -97,6 +110,7 @@ app.put("/doctors/update", async (req, res) => {
   doctor.name = newName;
 });
 
+//7.Fetch all 
 app.get("/all", async(req,res)=>{
     let students = await studentModel.find();
     let doctors = await doctorModel.find();
