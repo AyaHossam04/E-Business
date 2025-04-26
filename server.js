@@ -112,7 +112,5 @@ app.put("/doctors/update", async (req, res) => {
 
 //7.Fetch all 
 app.get("/all", async(req,res)=>{
-    let students = await studentModel.find();
-    let doctors = await doctorModel.find();
     res.status(200).json({students,doctors});
 });
